@@ -3,9 +3,9 @@ import "./ExpenseForm.css";
 
 const ExpenseForm = (props) => {
   const [userInput, setUserInput] = useState({
-    titleInput: "",
-    amountInput: "",
-    dateInput: "",
+    title: "",
+    amount: "",
+    date: "",
   });
 
   const inputChangeHandler = (event) => {
@@ -22,7 +22,7 @@ const ExpenseForm = (props) => {
 
     const expenseData = {
       ...userInput,
-      dateInput: new Date(userInput.dateInput),
+      date: new Date(userInput.date),
     };
 
     props.onSaveExpenseData(expenseData);
@@ -41,7 +41,7 @@ const ExpenseForm = (props) => {
           <input
             type="text"
             value={userInput.titleInput}
-            name="titleInput"
+            name="title"
             onChange={inputChangeHandler}
           />
         </div>
@@ -50,7 +50,7 @@ const ExpenseForm = (props) => {
           <input
             type="number"
             value={userInput.amountInput}
-            name="amountInput"
+            name="amount"
             min="0.01"
             step="0.01"
             onChange={inputChangeHandler}
@@ -61,7 +61,7 @@ const ExpenseForm = (props) => {
           <input
             type="date"
             value={userInput.dateInput}
-            name="dateInput"
+            name="date"
             min="2019-01-01"
             max="2023-12-31"
             onChange={inputChangeHandler}
