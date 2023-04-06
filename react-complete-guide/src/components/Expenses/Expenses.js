@@ -1,9 +1,17 @@
 import Card from "../UI/Card";
 import ExpenseItem from "./ExpenseItem";
+import { useState } from "react";
+import ExpensesFilter from "./ExpensesFilter";
 import "./Expenses.css";
 
 function Expenses(props) {
+  const [filteredYear, setFilteredYear] = useState("");
   const rows = [];
+
+  const filterChangeHandler = (selectedYear) => {
+    setFilteredYear(selectedYear);
+    console.log(selectedYear);
+  };
 
   for (let i = 0; i < props.expenses.length; i++) {
     rows.push(
@@ -17,7 +25,13 @@ function Expenses(props) {
 
   return (
     <div>
-      <Card className="expenses">{rows}</Card>
+      <Card className="expenses">
+        <ExpensesFilter
+          selected={filteredYear}
+          onChangeFilter={filterChangeHandler}
+        />
+        {rows}
+      </Card>
     </div>
   );
 }
